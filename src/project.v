@@ -1,4 +1,3 @@
-
 `default_nettype none
 
 module tt_um_example (
