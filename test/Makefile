@@ -5,16 +5,20 @@
 SIM ?= icarus
 TOPLEVEL_LANG ?= verilog
 SRC_DIR = $(PWD)/../src
-PROJECT_SOURCES = project.v
+PROJECT_SOURCES = cinv.v ring_osc.v tdc.v  tt_um_roy1707018_tdc.v
 
 ifneq ($(GATES),yes)
 
-# RTL simulation:
+# RTL simulation
 SIM_BUILD				= sim_build/rtl
 VERILOG_SOURCES += $(addprefix $(SRC_DIR)/,$(PROJECT_SOURCES))
 COMPILE_ARGS 		+= -I$(SRC_DIR)
+COMPILE_ARGS    += -DUNIT_DELAY=\#1
+COMPILE_ARGS    += -DSIM
 
 else
+
+# Gate level simulation:
 
 # Gate level simulation:
 SIM_BUILD				= sim_build/gl
@@ -24,7 +28,9 @@ COMPILE_ARGS    += -DUSE_POWER_PINS
 COMPILE_ARGS    += -DSIM
 COMPILE_ARGS    += -DUNIT_DELAY=\#1
 VERILOG_SOURCES += $(PDK_ROOT)/sky130A/libs.ref/sky130_fd_sc_hd/verilog/primitives.v
+VERILOG_SOURCES += $(PWD)/sky130_fd_sc_hd__inv_override.v
 VERILOG_SOURCES += $(PDK_ROOT)/sky130A/libs.ref/sky130_fd_sc_hd/verilog/sky130_fd_sc_hd.v
+
 
 # this gets copied in by the GDS action workflow
 VERILOG_SOURCES += $(PWD)/gate_level_netlist.v

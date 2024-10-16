@@ -25,17 +25,23 @@ async def test_project(dut):
 
     dut._log.info("Test project behavior")
 
-    await ClockCycles(dut.clk, 1)
-    assert dut.uo_out.value == 0
+    await ClockCycles(dut.clk,1)
+    dut._log.info("TDC check")
+    dut.ui_in.value = 181
+    await ClockCycles(dut.clk,2)
+    dut.ui_in.value = 117
+    # Read and log the output value
+    output_value = dut.uo_out.value
+    dut._log.info(f"TDC Output value: {output_value}")
 
-    await ClockCycles(dut.clk, 1)
-    assert dut.uo_out.value == 255
+    await ClockCycles(dut.clk,2)
+    dut._log.info("TDC check")
+    dut.ui_in.value = 165
+    await ClockCycles(dut.clk,2)
+    dut.ui_in.value = 229
+    # Read and log the output value
+    output_value = dut.uo_out.value
+    dut._log.info(f"TDC Output value: {output_value}")
+    await ClockCycles(dut.clk, 4)
 
-    await ClockCycles(dut.clk, 1)
-    assert dut.uo_out.value == 254
-
-    await ClockCycles(dut.clk, 253)
-    assert dut.uo_out.value == 1
-
-    await ClockCycles(dut.clk, 1)
-    assert dut.uo_out.value == 0
+    
