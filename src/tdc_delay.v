@@ -40,8 +40,8 @@ end
 */
 
 // Prescaler to count RO transitions (rising and falling edges)
-    always @(posedge clk or posedge rst) begin
-        if (rst) begin
+    always @(posedge clk or posedge rst_n) begin
+        if (rst_n) begin
             prescaler_count <= 0;
             transition_count <= 0;
             counting <= 0;
@@ -70,8 +70,8 @@ end
     end
 
     // Falling edge detection and count update
-    always @(negedge clk or posedge rst) begin
-        if (rst) begin
+    always @(negedge clk or posedge rst_n) begin
+        if (rst_n) begin
             transition_count <= 0;
         end else if (counting) begin
             if (prescaler_count == 255) begin
@@ -81,8 +81,8 @@ end
     end
 
     // Output the time difference (total transitions between start and stop)
-    always @(posedge clk or posedge rst) begin
-        if (rst) begin
+    always @(posedge clk or posedge rst_n) begin
+        if (rst_n) begin
             time_count <= 0;
         end else if (!counting && stop) begin
             time_count <= transition_count;  // Capture transition count on stop
