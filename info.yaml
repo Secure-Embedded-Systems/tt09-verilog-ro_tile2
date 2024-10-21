@@ -19,7 +19,7 @@ project:
   source_files:
     - "tt_um_roy1707018_tdc.v"
     - "ring_osc.v"
-    - "tdc.v"
+    - "tdc_delay.v"
     - "cinv.v"
 
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
