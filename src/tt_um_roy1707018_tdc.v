@@ -39,7 +39,7 @@ module tt_um_roy1707018_tdc (
     // Set uio_out and uio_oe to zero, as they are not used in this design
     assign uio_out = 8'b0;
     assign uio_oe = 8'b0; 
-    assign ui_in [2:7]= 6'b0;  
+    assign ui_in[7:2] = 6'b0;  
     wire _unused = &{ena, uio_in, 1'b0};
 
 endmodule
