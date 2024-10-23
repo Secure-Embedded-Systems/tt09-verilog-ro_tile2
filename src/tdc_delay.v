@@ -1,3 +1,4 @@
+`default_nettype none
 module tdc_delay #(parameter N_DELAY = 32) (
     input wire  rst_n,           // Active-low reset
     input wire  clk,             // System clock
