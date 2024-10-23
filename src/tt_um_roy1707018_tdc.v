@@ -29,7 +29,6 @@ module tt_um_roy1707018_tdc (
         .rst_n(rst_n),            // Active-low reset
         .clk(clk),                // System clock
         .start(ui_in[0]),         // Start signal (ui_in[0] as start)
-       // .stop(ui_in[1]),          // Stop signal (ui_in[1] as stop)
         .time_count(time_count)   // 32-bit output time count
     );
 
@@ -61,10 +60,11 @@ module tt_um_roy1707018_tdc (
     assign uo_out = selected_count;
 
    assign uio_out = 0;
-  assign uio_oe  = 0;
+   assign uio_oe  = 0;
 
   // List all unused inputs to prevent warnings
-  wire _unused = &{ena, uio_in, 1'b0};
+    wire _unused = &{ena, uio_in, 1'b0}
+
 
 
 
