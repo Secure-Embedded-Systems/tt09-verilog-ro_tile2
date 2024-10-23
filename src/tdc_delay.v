@@ -49,7 +49,7 @@ endgenerate
 
 
 
-always @(negedge stop) begin
+always @(negedge start) begin
         r_dly_store <= w_dly_sig[N_DELAY:1];
     
 end
