@@ -1,4 +1,4 @@
-`default_nettype noneInout port expression must support continuous assignment.
+`default_nettype none
 `timescale 1ns / 1ps
 
 /* This testbench just instantiates the module and makes some convenient wires
