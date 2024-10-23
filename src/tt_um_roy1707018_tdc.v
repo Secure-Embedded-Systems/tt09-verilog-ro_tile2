@@ -49,10 +49,10 @@ module tt_um_roy1707018_tdc (
     // 4-to-1 MUX to select which 8-bit section of time_count to output
     always @(*) begin
         case (ui_in[3:2])  // Use ui_in[3:2] to select which part of the 32-bit time_count
-            2'b00: selected_count = time_count[7:0];    // Lower 8 bits
-            2'b01: selected_count = time_count[15:8];   // Next 8 bits
-            2'b10: selected_count = time_count[23:16];  // Next 8 bits
-            2'b11: selected_count = time_count[31:24];  // Upper 8 bits
+            2'b00: selected_count = time_count_reg[7:0];    // Lower 8 bits
+            2'b01: selected_count = time_count_reg[15:8];   // Next 8 bits
+            2'b10: selected_count = time_count_reg[23:16];  // Next 8 bits
+            2'b11: selected_count = time_count_reg[31:24];  // Upper 8 bits
             default: selected_count = 8'b0;
         endcase
     end
