@@ -17,7 +17,9 @@ module tt_um_roy1707018_tdc (
     // Internal signals
     wire [31:0] time_count;  // 32-bit time count from the TDC delay module
     reg [7:0] selected_count; // 8-bit selected portion of the time_count
-    
+    reg [31:0] time_count_reg;   // Register to store time_count
+
+
     // Instantiate the tdc_delay module
     tdc_delay #(.N_DELAY(32)) u_tdc_delay (
         .rst_n(rst_n),            // Active-low reset
@@ -26,7 +28,20 @@ module tt_um_roy1707018_tdc (
         .stop(ui_in[1]),          // Stop signal (ui_in[1] as stop)
         .time_count(time_count)   // 32-bit output time count
     );
+
+    // Register time_count and select part of it to show on the output
+
     
+    always @(posedge clk or posedge rst_n) begin
+    if (rst_n) begin
+        time_count_reg <= 32'b0;  // Reset time count register
+    end else begin
+        time_count_reg <= time_count;  // Latch the time count from tdc_delay
+    end
+
+   end
+
+
     // 4-to-1 MUX to select which 8-bit section of time_count to output
     always @(*) begin
         case (ui_in[3:2])  // Use ui_in[3:2] to select which part of the 32-bit time_count
