@@ -16,6 +16,9 @@ module tt_um_roy1707018_tdc (
     input  wire       rst_n     // Active-low reset
 );
 
+
+    localparam N_DELAY = 32;
+
     // Internal signals
     wire [31:0] time_count;  // 32-bit time count from the TDC delay module
     reg [7:0] selected_count; // 8-bit selected portion of the time_count
@@ -23,7 +26,7 @@ module tt_um_roy1707018_tdc (
 
 
     // Instantiate the tdc_delay module
-    tdc_delay #(.N_DELAY(32)) u_tdc_delay (
+    tdc_delay #(.N_DELAY(N_DELAY)) u_tdc_delay (
         .rst_n(rst_n),            // Active-low reset
         .clk(clk),                // System clock
         .start(ui_in[0]),         // Start signal (ui_in[0] as start)
