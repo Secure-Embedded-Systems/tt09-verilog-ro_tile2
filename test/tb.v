@@ -1,4 +1,4 @@
-`default_nettype none
+`default_nettype noneInout port expression must support continuous assignment.
 `timescale 1ns / 1ps
 
 /* This testbench just instantiates the module and makes some convenient wires
@@ -28,8 +28,8 @@ module tb ();
 
       // Include power ports for the Gate Level test:
 `ifdef GL_TEST
-      .VPWR(1'b1),
-      .VGND(1'b0),
+      .VPWR(1'd1),
+      .VGND(1'd0),
 `endif
 
       .ui_in  (ui_in),    // Dedicated inputs
