@@ -27,9 +27,9 @@ async def test_project(dut):
 
     await ClockCycles(dut.clk,1)
     dut._log.info("TDC check")
-    dut.ui_in.value = 181
-    await ClockCycles(dut.clk,2)
-    dut.ui_in.value = 117
+    dut.ui_in.value = 3
+    await ClockCycles(dut.clk,1)
+    dut.ui_in.value = 2
     # Read and log the output value
     output_value = dut.uo_out.value
     dut._log.info(f"TDC Output value: {output_value}")

@@ -25,7 +25,7 @@ module tt_um_roy1707018_tdc (
         .rst_n(rst_n),            // Active-low reset
         .clk(clk),                // System clock
         .start(ui_in[0]),         // Start signal (ui_in[0] as start)
-        .stop(ui_in[1]),          // Stop signal (ui_in[1] as stop)
+       // .stop(ui_in[1]),          // Stop signal (ui_in[1] as stop)
         .time_count(time_count)   // 32-bit output time count
     );
 
