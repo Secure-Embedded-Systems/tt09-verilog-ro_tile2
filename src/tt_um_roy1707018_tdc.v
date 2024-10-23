@@ -60,8 +60,12 @@ module tt_um_roy1707018_tdc (
     // Output the selected 8 bits to uo_out
     assign uo_out = selected_count;
 
-   assign uio_out = 0;
-   assign uio_oe  = 0;
+     // Tri-state logic for inout ports (uio_out)
+    assign uio_out = (uio_oe) ? selected_count : 8'bz; // Drive selected_count when enabled, high-impedance otherwise
+
+// Control output enable (set to output mode)
+    assign uio_oe = (ui_in[0]) ? 1'b1 : 1'b0;  // Example: control output enable based on ui_in[0]
+
 
   // List all unused inputs to prevent warnings
   wire _unused = &{ena, uio_in, 1'b0};
