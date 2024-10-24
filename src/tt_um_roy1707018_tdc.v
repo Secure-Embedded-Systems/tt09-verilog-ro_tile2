@@ -6,6 +6,12 @@
 `default_nettype none
 
 module tt_um_roy1707018_tdc (
+
+	      // Include power ports for the Gate Level test:
+`ifdef GL_TEST
+      .VPWR(vpwr),
+      .VGND(vgnd),
+`endif
     input  wire [7:0] ui_in,    // Dedicated inputs (we'll use ui_in[1:0] for mux control)
     output wire [7:0] uo_out,   // Dedicated outputs (8-bit output of time count)
     input  wire [7:0] uio_in,   // IOs: Input path
@@ -61,10 +67,10 @@ module tt_um_roy1707018_tdc (
     assign uo_out = selected_count;
 
      // Tri-state logic for inout ports (uio_out)
-    assign uio_out = (uio_oe) ? selected_count : 8'bz; // Drive selected_count when enabled, high-impedance otherwise
+    assign uio_out = 0
 
 // Control output enable (set to output mode)
-    assign uio_oe = (ui_in[0]) ? 1'b1 : 1'b0;  // Example: control output enable based on ui_in[0]
+    assign uio_oe = 0;
 
 
   // List all unused inputs to prevent warnings
