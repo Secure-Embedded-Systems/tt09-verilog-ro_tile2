@@ -65,11 +65,7 @@ module tt_um_roy1707018_tdc (
 
     // Output the selected 8 bits to uo_out
     assign uo_out = selected_count;
-
-     // Tri-state logic for inout ports (uio_out)
-    assign uio_out = 0
-
-// Control output enable (set to output mode)
+    assign uio_out = 0;
     assign uio_oe = 0;
 
 
